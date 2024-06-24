@@ -1,7 +1,10 @@
 const Footer = () => {
+    // Get current year
+    const currentYear = new Date().getFullYear();
+
     return (
         <>
-            <p>My Footer</p>
+            <p>© {currentYear} | <a href="https://www.fmpberger.com">fmpberger.com</a></p>
         </>
     )
 };
