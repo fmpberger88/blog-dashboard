@@ -2,51 +2,66 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:5000/api/v1';
 
+const getToken = () => localStorage.getItem('token');
 
-// GET - Read all blogs
+const axiosInstance = axios.create({
+    baseURL: API_URL,
+});
+
+axiosInstance.interceptors.request.use((config) => {
+    const token = getToken();
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
+
 export const fetchBlogs = async () => {
-    const response = await axios.get(`${API_URL}/blogs`);
+    const response = await axiosInstance.get('/blogs');
     return response.data;
-}
+};
 
-// GET - Read one blog
 export const fetchBlogById = async (id) => {
-    const response = await axios.get(`${API_URL}/blogs/${id}`);
+    const response = await axiosInstance.get(`/blogs/${id}`);
     return response.data;
-}
+};
 
-// POST - Create new blog
 export const createBlog = async (blog) => {
-    const response = await axios.post(`${API_URL}/blog`, blog);
+    const response = await axiosInstance.post('/blogs', blog);
     return response.data;
-}
+};
 
-// PUT - Update Blog
 export const updateBlog = async (id, blog) => {
-    const response = await axios.put(`${API_URL}/blogs/${id}`, blog);
+    const response = await axiosInstance.put(`/blogs/${id}`, blog);
     return response.data;
-}
+};
 
-// DELETE - Delete Blog
 export const deleteBlog = async (id) => {
-    const response = await axios.delete(`${API_URL}/blogs/${id}`);
+    const response = await axiosInstance.delete(`/blogs/${id}`);
     return response.data;
-}
+};
 
-// GET - Read all comments
-export const fetchCommentsByBlog = async (blogId) => {
-    const response = await axios.get(`${API_URL}/comments/${blogId}`);
+export const fetchComments = async (blogId) => {
+    const response = await axiosInstance.get(`/comments/${blogId}`);
     return response.data;
-}
+};
 
-// POST - create a Comment
 export const createComment = async (blogId, comment) => {
-    const response = axios.post(`${API_URL}/comments${blogId}`, comment);
+    const response = await axiosInstance.post(`/comments/${blogId}`, comment);
     return response.data;
-}
+};
 
-// DELETE - delete a comment
 export const deleteComment = async (commentId) => {
-    const response = await axios.delete(`${API_URL}/comments/${commentId}`);
+    const response = await axiosInstance.delete(`/comments/${commentId}`);
     return response.data;
-}
+};
+
+export const register = async (userData) => {
+    const response = await axios.post(`${API_URL}/register`, userData);
+    return response.data;
+};
+
+export const login = async (userData) => {
+    const response = await axios.post(`${API_URL}/login`, userData);
+    return response.data;
+};
