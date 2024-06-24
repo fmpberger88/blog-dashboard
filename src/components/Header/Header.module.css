@@ -1,0 +1,26 @@
+header {
+    background-color: #213547;
+    width: 100%;
+    padding: 3rem;
+}
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+li {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+}
