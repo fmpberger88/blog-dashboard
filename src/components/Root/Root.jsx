@@ -1,12 +1,15 @@
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
+import {Outlet} from "react-router-dom";
 
 
 const Root = () => {
     return (
         <>
             <Header />
-            <h1>Hello World!</h1>
+            <main>
+                <Outlet />
+            </main>
             <Footer />
         </>
     )
