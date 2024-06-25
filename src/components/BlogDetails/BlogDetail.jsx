@@ -26,7 +26,7 @@ const BlogDetails = () => {
     return (
         <div className={styles.blogContainer}>
             <h1 className={styles.blogTitle}>{data.title}</h1>
-            <span className={styles.author}>{data.author.username}</span>
+            <span className={styles.author}>{data.author.first_name} {data.author.family_name}</span>
             <span className={styles.published}>Published on: {new Date(data.createdAt).toLocaleDateString()}</span>
             {data.image ?
                 <img
