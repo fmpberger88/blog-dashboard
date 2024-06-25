@@ -39,7 +39,10 @@ const BlogDetails = () => {
                     alt="Default Image"
                     className={styles.blogImage}
                 />}
-            <p className={styles.content}>{data.content}</p>
+            <div
+                className={styles.content}
+                dangerouslySetInnerHTML={{__html: data.content}}
+            ></div>
             <span className={styles.views}>Views: {data.views}</span>
             <Link className={styles.backLink} to="/blogs">Back</Link>
         </div>
