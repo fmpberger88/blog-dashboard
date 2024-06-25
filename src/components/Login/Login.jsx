@@ -13,6 +13,7 @@ const Login = () => {
         mutationFn: login,
         onSuccess: (data) => {
             localStorage.setItem('token', data.token);
+            localStorage.setItem('userId', data.user.id);
             alert("Login successful!");
             navigate('/blogs');
 
