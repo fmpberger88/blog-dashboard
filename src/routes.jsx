@@ -5,6 +5,7 @@ import Register from "./components/Register/Register.jsx";
 import Login from "./components/Login/Login.jsx";
 import CreateBlog from "./components/CreateBlog/CreateBlog.jsx";
 import BlogDetail from "./components/BlogDetails/BlogDetail.jsx";
+import UserBlogs from "./components/UserBlogs/UserBlogs.jsx";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: 'create-blog',
                 element: <CreateBlog />
+            },
+            {
+                path: 'user/blogs',
+                element: <UserBlogs />
             },
             {
                 path: 'register',
