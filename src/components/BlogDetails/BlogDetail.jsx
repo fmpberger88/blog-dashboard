@@ -5,6 +5,9 @@ import { fetchBlogById, deleteBlog } from "../../api.jsx";
 import defaultImage from '/default_image.webp'
 import Loading from "../Loading/Loading.jsx";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
+import {useState} from "react";
+import Modal from "../Modal/Modal.jsx";
+
 
 
 const BlogDetails = () => {
@@ -13,6 +16,7 @@ const BlogDetails = () => {
     const queryClient = useQueryClient();
     const token = localStorage.getItem('token');
     const currentUserId = localStorage.getItem('userId');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { data, error, isLoading } = useQuery({
         queryKey: ['blog', blogId],
@@ -40,6 +44,19 @@ const BlogDetails = () => {
         mutation.mutate();
     };
 
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const confirmDelete = () => {
+        closeModal();
+        handleDelete();
+    };
+
     return (
         <div className={styles.blogContainer}>
             <h1 className={styles.blogTitle}>{data.title}</h1>
@@ -62,9 +79,16 @@ const BlogDetails = () => {
             ></div>
             <span className={styles.views}>Views: {data.views}</span>
             {data.author._id === currentUserId && (
-                <button className={styles.deleteButton} onClick={handleDelete}>Delete Blog</button>
+                <button className={styles.deleteButton} onClick={openModal}>Delete Blog</button>
             )}
             <Link className={styles.backLink} to="/blogs">Back</Link>
+            <Modal
+                open={isModalOpen}
+                title="Confirm Delete"
+                message="Are you sure you want to delete this blog?"
+                onClose={closeModal}
+                onConfirm={confirmDelete}
+            />
         </div>
     );
 };
