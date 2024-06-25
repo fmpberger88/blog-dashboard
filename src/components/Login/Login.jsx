@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation} from "@tanstack/react-query";
 import { login } from '../../api.jsx';
 import {Link, useNavigate} from "react-router-dom";
+import {StyledForm} from "../../styles.jsx";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -27,7 +28,7 @@ const Login = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <StyledForm onSubmit={handleSubmit}>
             <h1>Login</h1>
             <input
                 type="email"
@@ -44,7 +45,7 @@ const Login = () => {
                 {mutation.isLoading ? "Logging in..." : "Login"}
             </button>
             <p>No Account yet? Go to <Link to="/register">Registration</Link></p>
-        </form>
+        </StyledForm>
     );
 };
 

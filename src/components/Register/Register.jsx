@@ -2,6 +2,9 @@ import {useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import { register } from "../../api.jsx";
 import { Link, useNavigate } from "react-router-dom";
+import {
+    StyledForm
+} from "../../styles.jsx";
 
 
 const Register = () => {
@@ -27,7 +30,7 @@ const Register = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <StyledForm onSubmit={handleSubmit}>
             <h1>Register</h1>
             <input
                 type="text"
@@ -54,7 +57,7 @@ const Register = () => {
                 {mutation.isLoading ? "Loading..." : "Register"}
             </button>
             <p>Already an Account? Go to <Link to='/login'>Login</Link></p>
-        </form>
+        </StyledForm>
     );
 };
 
