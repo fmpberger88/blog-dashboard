@@ -8,6 +8,7 @@ const Header = () => {
     // Delete JWT Token
     const handleLogout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('userId')
         navigate('/login');
     };
 
