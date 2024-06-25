@@ -49,3 +49,9 @@ export const StyledForm = styled.form`
         }
     }
 `
+
+export const MainTitle = styled.h1`
+    color: #213547;
+    text-align: center;
+    margin: 2rem;
+`
