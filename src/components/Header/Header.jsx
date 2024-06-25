@@ -40,7 +40,7 @@ const Header = () => {
                                 <NavLink to="/user/blogs">My Blogs</NavLink>
                             </li>
                             <li>
-                                <button onClick={handleLogout}>Logout</button>
+                                <NavLink as="button" to="#" onClick={handleLogout}>Logout</NavLink>
                             </li>
                         </>
                     )}
