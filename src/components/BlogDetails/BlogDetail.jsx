@@ -1,7 +1,7 @@
-import { useParams, Link } from "react-router-dom";
+import {useParams, Link, useNavigate} from "react-router-dom";
 import styles from "./BlogDetail.module.css";
-import { useQuery } from "@tanstack/react-query";
-import { fetchBlogById } from "../../api.jsx";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { fetchBlogById, deleteBlog } from "../../api.jsx";
 import defaultImage from '/default_image.webp'
 import Loading from "../Loading/Loading.jsx";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
@@ -9,11 +9,24 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 
 const BlogDetails = () => {
     const { blogId } = useParams();
+    const navigate = useNavigate();
+    const queryClient = useQueryClient();
+    const token = localStorage.getItem('token');
+    const currentUserId = localStorage.getItem('userId');
 
     const { data, error, isLoading } = useQuery({
         queryKey: ['blog', blogId],
         queryFn: () => fetchBlogById(blogId),
     })
+
+
+    const mutation = useMutation({
+        mutationFn: () => deleteBlog(blogId, token),
+        onSuccess: () => {
+            queryClient.invalidateQueries('blogs');
+            navigate('/blogs');
+        }
+    });
 
     if (isLoading) {
         return <Loading />
@@ -22,6 +35,10 @@ const BlogDetails = () => {
     if (error) {
         return <ErrorMessage message={error.message} />
     }
+
+    const handleDelete = () => {
+        mutation.mutate();
+    };
 
     return (
         <div className={styles.blogContainer}>
@@ -44,6 +61,9 @@ const BlogDetails = () => {
                 dangerouslySetInnerHTML={{__html: data.content}}
             ></div>
             <span className={styles.views}>Views: {data.views}</span>
+            {data.author._id === currentUserId && (
+                <button className={styles.deleteButton} onClick={handleDelete}>Delete Blog</button>
+            )}
             <Link className={styles.backLink} to="/blogs">Back</Link>
         </div>
     );
