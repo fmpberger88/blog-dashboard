@@ -7,6 +7,7 @@ import Loading from "../Loading/Loading.jsx";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 import {useState} from "react";
 import Modal from "../Modal/Modal.jsx";
+import AddComment from "../AddComment/AddComment.jsx";
 
 
 
@@ -81,6 +82,14 @@ const BlogDetails = () => {
             {data.author._id === currentUserId && (
                 <button className={styles.deleteButton} onClick={openModal}>Delete Blog</button>
             )}
+            <h2 className={styles.commentsTitle}>Comments</h2>
+            <AddComment />
+            {data.comments.length > 0 ? data.comments.map(comment => (
+                <div key={comment._id} className={styles.commentsCard}>
+                    <p className={styles.commentsText}>{comment.text}</p>
+                    <small>{new Date(comment.createdAt).toLocaleDateString()}</small>
+                </div>
+            )) : (<span className={styles.commentsText}>No comments!</span>)}
             <Link className={styles.backLink} to="/blogs">Back</Link>
             <Modal
                 open={isModalOpen}

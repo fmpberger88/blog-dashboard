@@ -45,6 +45,26 @@
     background-color: #721c24;
 }
 
+.commentsTitle {
+    color: #213547;
+    border-top: 2px solid #213547;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.commentsCard {
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #213547;
+    padding: 1.5rem 0;
+}
+
+.commentsText {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
 .backLink {
     text-decoration: none;
     color: #fff;
