@@ -6,6 +6,7 @@ import Login from "./components/Login/Login.jsx";
 import CreateBlog from "./components/CreateBlog/CreateBlog.jsx";
 import BlogDetail from "./components/BlogDetails/BlogDetail.jsx";
 import UserBlogs from "./components/UserBlogs/UserBlogs.jsx";
+import EditBlog from "./components/EditBlog/EditBlog.jsx";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path: 'create-blog',
                 element: <CreateBlog />
+            },
+            {
+                path: 'update-blog/:blogId',
+                element: <EditBlog />
             },
             {
                 path: 'user/blogs',

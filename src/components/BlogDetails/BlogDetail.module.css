@@ -54,6 +54,10 @@
 }
 
 .commentsCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     width: 100%;
     border-bottom: 1px solid #213547;
@@ -65,12 +69,29 @@
     margin-bottom: 1rem;
 }
 
+
+
 .backLink {
     text-decoration: none;
     color: #fff;
     background-color: #213547;
     padding: 0.5rem 1rem;
     border-radius: 4px;
+}
+
+.deleteCommentButton {
+    background-color: darkred;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 130px;
+    margin-top: 0.5rem;
+}
+
+.deleteCommentButton:hover {
+    background-color: #721c24;
 }
 
 

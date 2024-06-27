@@ -5,9 +5,9 @@ import routes from './routes.jsx';
 function App() {
 
     return (
-        <div>
+        <>
             <RouterProvider router={routes}></RouterProvider>
-        </div>
+        </>
     )
 }
 

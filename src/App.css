@@ -31,13 +31,6 @@ a:hover {
   color: #A3CDF1;
 }
 
-div {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-
-
 @media screen and (max-width: 600px)  {
   div {
     max-width: 100%;

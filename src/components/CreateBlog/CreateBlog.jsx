@@ -4,7 +4,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { createBlog } from '../../api.jsx';
 import { useNavigate } from 'react-router-dom';
 import styles from './CreateBlog.module.css';
-import {StyledForm} from "../../styles.jsx";
+import {StyledEditor} from "../../styles.jsx";
 
 
 const CreateBlog = () => {
@@ -19,7 +19,7 @@ const CreateBlog = () => {
         onSuccess: () => {
             alert("Blog created successfully!");
             queryClient.invalidateQueries('blogs');
-            navigate('/blogs');
+            navigate('/user/blogs');
         },
         onError: (error) => {
             alert(error.message);
@@ -43,7 +43,7 @@ const CreateBlog = () => {
 
     return (
         <div className={styles.createBlogContainer}>
-            <StyledForm onSubmit={handleSubmit} className={styles.form}>
+            <StyledEditor onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.formGroup}>
                     <input
                         type="text"
@@ -83,7 +83,7 @@ const CreateBlog = () => {
                     />
                 </div>
                 <button type="submit" className={styles.submitButton}>Create Blog</button>
-            </StyledForm>
+            </StyledEditor>
         </div>
     );
 };

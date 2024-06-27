@@ -1,7 +1,7 @@
 import {useParams, Link, useNavigate} from "react-router-dom";
 import styles from "./BlogDetail.module.css";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { fetchBlogById, deleteBlog } from "../../api.jsx";
+import { fetchBlogById, deleteBlog, deleteComment } from "../../api.jsx";
 import defaultImage from '/default_image.webp'
 import Loading from "../Loading/Loading.jsx";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
@@ -24,7 +24,7 @@ const BlogDetails = () => {
         queryFn: () => fetchBlogById(blogId),
     })
 
-
+    // Delete a Blog
     const mutation = useMutation({
         mutationFn: () => deleteBlog(blogId, token),
         onSuccess: () => {
@@ -32,6 +32,15 @@ const BlogDetails = () => {
             navigate('/blogs');
         }
     });
+
+    // Delete a Comment
+    const deleteMutation = useMutation({
+        mutationFn: (commentId) => deleteComment(commentId, token),
+        onSuccess: () => {
+            queryClient.invalidateQueries(['blog', blogId]);
+        }
+    });
+
 
     if (isLoading) {
         return <Loading />
@@ -41,6 +50,7 @@ const BlogDetails = () => {
         return <ErrorMessage message={error.message} />
     }
 
+    // Delete a Blog!
     const handleDelete = () => {
         mutation.mutate();
     };
@@ -57,6 +67,11 @@ const BlogDetails = () => {
         closeModal();
         handleDelete();
     };
+
+    // Delete a Comment!
+    const handleDeleteComment = (commentId) => {
+        deleteMutation.mutate(commentId);
+    }
 
     return (
         <div className={styles.blogContainer}>
@@ -82,12 +97,18 @@ const BlogDetails = () => {
             {data.author._id === currentUserId && (
                 <button className={styles.deleteButton} onClick={openModal}>Delete Blog</button>
             )}
+            {data.author._id === currentUserId && (
+                <Link as="button" to={`/update-blog/${blogId}`}>Edit</Link>
+            )}
             <h2 className={styles.commentsTitle}>Comments</h2>
             <AddComment />
             {data.comments.length > 0 ? data.comments.map(comment => (
                 <div key={comment._id} className={styles.commentsCard}>
                     <p className={styles.commentsText}>{comment.text}</p>
                     <small>{new Date(comment.createdAt).toLocaleDateString()}</small>
+                    {data.author._id === currentUserId && (
+                        <button className={styles.deleteCommentButton} onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+                    )}
                 </div>
             )) : (<span className={styles.commentsText}>No comments!</span>)}
             <Link className={styles.backLink} to="/blogs">Back</Link>
