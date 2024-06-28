@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { useMutation} from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { login } from '../../api.jsx';
-import {Link, useNavigate} from "react-router-dom";
-import {StyledForm} from "../../styles.jsx";
+import { Link, useNavigate } from "react-router-dom";
+import { StyledForm } from "../../styles.jsx";
+import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
     const mutation = useMutation({
@@ -14,12 +16,10 @@ const Login = () => {
         onSuccess: (data) => {
             localStorage.setItem('token', data.token);
             localStorage.setItem('userId', data.user.id);
-            alert("Login successful!");
             navigate('/blogs');
-
         },
         onError: (error) => {
-            alert(error.message);
+            setErrorMessage(error.message);
         }
     });
 
@@ -31,6 +31,7 @@ const Login = () => {
     return (
         <StyledForm onSubmit={handleSubmit}>
             <h1>Login</h1>
+            {errorMessage && <ErrorMessage message={errorMessage} />}
             <input
                 type="email"
                 value={email}
