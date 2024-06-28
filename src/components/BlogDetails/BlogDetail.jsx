@@ -2,6 +2,7 @@ import {useParams, Link, useNavigate} from "react-router-dom";
 import styles from "./BlogDetail.module.css";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchBlogById, deleteBlog, deleteComment } from "../../api.jsx";
+import DOMPurify from "dompurify";
 import defaultImage from '/default_image.webp'
 import Loading from "../Loading/Loading.jsx";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
@@ -73,6 +74,9 @@ const BlogDetails = () => {
         deleteMutation.mutate(commentId);
     }
 
+    // Clean html-content
+    const cleanContent = DOMPurify.sanitize(data.content);
+
     return (
         <div className={styles.blogContainer}>
             <h1 className={styles.blogTitle}>{data.title}</h1>
@@ -91,7 +95,7 @@ const BlogDetails = () => {
                 />}
             <div
                 className={styles.content}
-                dangerouslySetInnerHTML={{__html: data.content}}
+                dangerouslySetInnerHTML={{__html: cleanContent}}
             ></div>
             <span className={styles.views}>Views: {data.views}</span>
             {data.author._id === currentUserId && (
