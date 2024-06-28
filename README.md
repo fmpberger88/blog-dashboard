@@ -90,12 +90,12 @@ npm run server
 Serves the built app from the dist folder.
 
 ## Dependencies
-react - A JavaScript library for building user interfaces.
-react-router-dom - Declarative routing for React.
-@tanstack/react-query - Hooks for fetching, caching, and updating asynchronous data in React.
-axios - Promise based HTTP client for the browser and node.js.
-tinymce - Rich text editor.
-dotenv - Loads environment variables from a .env file.
+- react - A JavaScript library for building user interfaces.
+- react-router-dom - Declarative routing for React.
+- @tanstack/react-query - Hooks for fetching, caching, and updating asynchronous data in React.
+- axios - Promise based HTTP client for the browser and node.js.
+- tinymce - Rich text editor.
+- dotenv - Loads environment variables from a .env file.
 
 ## License
 This project is licensed under the MIT License
