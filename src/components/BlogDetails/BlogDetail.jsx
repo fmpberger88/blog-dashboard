@@ -98,12 +98,14 @@ const BlogDetails = () => {
                 dangerouslySetInnerHTML={{__html: cleanContent}}
             ></div>
             <span className={styles.views}>Views: {data.views}</span>
-            {data.author._id === currentUserId && (
-                <button className={styles.deleteButton} onClick={openModal}>Delete Blog</button>
-            )}
-            {data.author._id === currentUserId && (
-                <Link as="button" to={`/update-blog/${blogId}`}>Edit</Link>
-            )}
+            <div className={styles.buttonContainer}>
+                {data.author._id === currentUserId && (
+                    <Link as="button" to={`/update-blog/${blogId}`} className={styles.editButton}>Edit</Link>
+                )}
+                {data.author._id === currentUserId && (
+                    <button className={styles.deleteButton} onClick={openModal}>Delete Blog</button>
+                )}
+            </div>
             <h2 className={styles.commentsTitle}>Comments</h2>
             <AddComment />
             {data.comments.length > 0 ? data.comments.map(comment => (

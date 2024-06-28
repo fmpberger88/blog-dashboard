@@ -32,17 +32,46 @@
     font-size: 1.1rem;
 }
 
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
 .deleteButton {
     background-color: darkred;
+    font-size: 1rem;
+    font-weight: bold;
     color: white;
     border: none;
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
     cursor: pointer;
     border-radius: 5px;
+    width: 120px;
 }
 
 .deleteButton:hover {
     background-color: #721c24;
+}
+
+.editButton {
+    background-color: orange;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 120px;
+    text-align: center;
+}
+
+.editButton:hover {
+    background-color: darkorange;
+    color: white;
+    text-decoration: none;
 }
 
 .commentsTitle {
@@ -79,20 +108,22 @@
     border-radius: 4px;
 }
 
+
 .deleteCommentButton {
     background-color: darkred;
     color: white;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.25rem;
     cursor: pointer;
     border-radius: 5px;
-    width: 130px;
+    width: 100px;
     margin-top: 0.5rem;
 }
 
 .deleteCommentButton:hover {
     background-color: #721c24;
 }
+
 
 
 @media screen and (max-width: 1000px) {
