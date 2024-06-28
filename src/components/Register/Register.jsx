@@ -2,9 +2,11 @@ import {useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import { register } from "../../api.jsx";
 import { Link, useNavigate } from "react-router-dom";
+import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
 import {
     StyledForm
 } from "../../styles.jsx";
+import SuccessMessage from "../SuccessMesssage/SuccessMessage.jsx";
 
 
 const Register = () => {
@@ -13,16 +15,26 @@ const Register = () => {
     const [family_name, setLast_name] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
     const navigate = useNavigate();
 
     const mutation = useMutation({
         mutationFn: register,
         onSuccess: () => {
-            alert("Successfully registered!");
-            navigate('/login')
+            setSuccessMessage("Registration successful! Redirecting to login...");
+            setErrorMessage("");
+            setTimeout(() => {
+                navigate('/login')
+            }, 3000)
         },
         onError: (error) => {
-            alert(error.message);
+            if (error.response && error.response.data && error.response.data.errors) {
+                setErrorMessage(error.response.data.errors.map(err => err.msg).join(' '));
+            } else {
+                setErrorMessage(error.message);
+            }
+            setSuccessMessage("");
         }
     });
 
@@ -34,6 +46,8 @@ const Register = () => {
     return (
         <StyledForm onSubmit={handleSubmit}>
             <h1>Register</h1>
+            {errorMessage && <ErrorMessage message={errorMessage} />}
+            {successMessage && <SuccessMessage message={successMessage} />}
             <input
                 type="text"
                 value={username}

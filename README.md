@@ -59,7 +59,7 @@ src/
 │   ├── Blogs/             # Blogs component
 │   ├── CreateBlog/        # CreateBlog component
 │   ├── EditBlog/          # EditBlog component
-│   ├── ErrorMessage/      # ErrorMessage component
+│   ├── SuccessMessage/      # SuccessMessage component
 │   ├── Header/            # Header component
 │   ├── Loading/           # Loading component
 │   ├── Modal/             # Modal component

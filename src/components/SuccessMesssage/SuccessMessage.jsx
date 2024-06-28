@@ -1,7 +1,7 @@
 // src/components/ErrorMessage/ErrorMessage.jsx
-import styles from './ErrorMessage.module.css';
+import styles from './SuccessMessage.module.css';
 
-const ErrorMessage = ({ message }) => {
+const SuccessMessage = ({ message }) => {
     return (
         <div className={styles.errorContainer}>
             <div className={styles.errorBox}>
@@ -12,4 +12,4 @@ const ErrorMessage = ({ message }) => {
     );
 }
 
-export default ErrorMessage;
+export default SuccessMessage;
