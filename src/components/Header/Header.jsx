@@ -20,9 +20,6 @@ const Header = () => {
                         <li>
                             <NavLink to="/blogs">Blogs</NavLink>
                         </li>
-                        <li>
-                            <NavLink to="/create-blog">Create Blog</NavLink>
-                        </li>
                     </div>
                     <div>
                     {!token ? (
@@ -36,6 +33,9 @@ const Header = () => {
                         </>
                     ) : (
                         <>
+                            <li>
+                                <NavLink to="/create-blog">Create Blog</NavLink>
+                            </li>
                             <li>
                                 <NavLink to="/user/blogs">My Blogs</NavLink>
                             </li>
