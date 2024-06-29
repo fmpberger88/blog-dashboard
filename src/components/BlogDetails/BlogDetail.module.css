@@ -4,7 +4,8 @@
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
-    margin: 2rem 0;
+    margin: 2rem auto;
+    width: 70%;
 }
 
 .blogTitle {
@@ -127,6 +128,9 @@
 
 
 @media screen and (max-width: 1000px) {
+    .blogContainer {
+        width: 90%;
+    }
     .blogImage {
         width: 100%;
     }
