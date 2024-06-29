@@ -33,9 +33,11 @@ const Blogs = () => {
                         className={styles.blogsCard}
                         onClick={() => navigate(`/blog/${blog._id}`)}
                     >
-                        <h2 className={styles.blogsTitle}><Link to={`/blog/${blog._id}`}>{blog.title}</Link></h2>
                         {blog.image ? <img src={blog.image} alt={blog.alt} className={styles.blogsImage}/> :
                             <img src={defaultImage} alt="default Image" className={styles.blogsImage}/>}
+                        <h2 className={styles.blogsTitle}><Link to={`/blog/${blog._id}`}>{blog.title}</Link></h2>
+                        <span><strong>{blog.author.first_name} {blog.author.family_name}</strong></span>
+                        <span><em>{new Date(blog.createdAt).toLocaleDateString()}</em></span>
                     </div>
                 ))}
             </div>
