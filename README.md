@@ -98,7 +98,7 @@ Serves the built app from the dist folder.
 - dotenv - Loads environment variables from a .env file.
 
 ## License
-This project is licensed under the MIT License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 Inspired by the need to create a modern, full-featured blog application.
